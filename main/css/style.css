@@ -1,0 +1,70 @@
+.video-container{
+    width: 550px;
+    height: 315px;
+}
+@media (max-width: 1024px){
+.video-container{
+    width: 450px;
+    height: 250px;
+}
+}
+@media (max-width: 991px){
+.video-container{
+    width: 350px;
+    height: 200px;
+}
+}
+@media (max-width: 380px){
+.video-container{
+    width: 250px;
+    height: 200px;
+}
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+
+.nav-size{
+        padding: 20px 50px 20px 50px;
+        }
+.nav-size-sp{
+        padding: 20px 50px 20px 50px;
+        }
+
+        @media (max-width: 425px){
+          .nav-size{
+            padding: 20px 80px 20px 80px;
+          }
+          }
+                  @media (max-width: 425px){
+          .nav-size-sp{
+            padding: 20px 80px 20px 80px;
+          }
+          }
+          
+          .donation-poster{
+              width:100px;
+              height:60px;
+          }
+          }
+        
