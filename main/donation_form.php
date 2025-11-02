@@ -97,7 +97,7 @@
 		//	$mail->SMTPDebug = 4;                               // Enable verbose debug output
 
 			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'mail.narmadalaya.org';  // Specify main and backup SMTP servers
+			$mail->Host = 'localhost';  // Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication
 			$mail->Username = EMAIL;                 // SMTP username
 			$mail->Password = PASS;                           // SMTP password
@@ -106,7 +106,7 @@
 
 			$mail->setFrom(EMAIL, 'Narmadalaya NGO');
 			$mail->addAddress('narmadalaya@gmail.com');     // Add a recipient
-			$mail->addCC('info@narmadalaya.org');
+			// $mail->addCC('info@narmadalaya.org');
 
 			$mail->isHTML(true);                                  // Set email format to HTML
 
@@ -521,7 +521,7 @@
             $mail->send();
             $mail->ClearAddresses();
 			$mail->addAddress($email);     // Add a recipient
-			$mail->addCC('noreply@narmadalaya.org');
+			// $mail->addCC('noreply@narmadalaya.org');
 
 			$mail->isHTML(true);                                  // Set email format to HTML
 
@@ -642,7 +642,7 @@
                           <tbody>
                             <tr>
                               <td style="width:130px;">
-                                  <img alt="LoGo Here" width="130" height="130" src="https://narmadalaya.org/main/img/Nimar_Abhyudaya.png" style="border:0;display:block;font-size:13px;height:130px;outline:none;text-decoration:none;width:100%;" width="130" />
+                                  <img alt="LoGo Here" width="130" height="130" src="img/Nimar_Abhyudaya.png" style="border:0;display:block;font-size:13px;height:130px;outline:none;text-decoration:none;width:100%;" width="130" />
                               </td>
                             </tr>
                           </tbody>
@@ -731,7 +731,7 @@ your personal visit and guidance whenever possible to you.
                     </tr>
                             <tr>
                               <td style="width:450px;">
-                                <img alt="Welcome!" height="250" src="https://narmadalaya.org/main/img/narmadalaya_mail.png" style="border:0;display:block;font-size:13px;height:250px;outline:none;text-decoration:none;width:100%;" width="450" />
+                                <img alt="Welcome!" height="250" src="img/narmadalaya_mail.png" style="border:0;display:block;font-size:13px;height:250px;outline:none;text-decoration:none;width:100%;" width="450" />
                               </td>
                             </tr>
                           </tbody>
@@ -769,7 +769,7 @@ your personal visit and guidance whenever possible to you.
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;width:210px;">
                           <tr>
                             <td align="center" bgcolor="#E44D26" role="presentation" style="background-color:#E44D26;border:none;border-radius:3px;cursor:auto;height:25px;padding:10px 25px;" valign="middle">
-                              <a href="https://narmadalaya.org/main/" style="background:#E44D26;color:#ffffff;font-family:Open Sans, Arial, sans-serif;font-size:17px;line-height:120%;margin:0;text-decoration:none;" target="_blank">
+                              <a href="./" style="background:#E44D26;color:#ffffff;font-family:Open Sans, Arial, sans-serif;font-size:17px;line-height:120%;margin:0;text-decoration:none;" target="_blank">
                                 Website
                               </a>
                             </td>
@@ -859,7 +859,7 @@ your personal visit and guidance whenever possible to you.
                                                 <tr>
                                                   <td valign="top">
                                                     <a href="https://www.facebook.com/narmadalaya.ngo" style="text-decoration:none;" target="_blank">
-                                                      <img alt="Facebook" border="0" height="26" src="https://narmadalaya.org/main/img/social/facebook.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
+                                                      <img alt="Facebook" border="0" height="26" src="img/social/facebook.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
                                                     </a>
                                                   </td>
                                                   <td width="7">
@@ -868,7 +868,7 @@ your personal visit and guidance whenever possible to you.
                                                   
                                                   <td valign="top">
                                                     <a href="https://narmada-bharati.blogspot.com/" style="text-decoration:none;" target="_blank">
-                                                      <img alt="Blogger" border="0" height="26" src="https://narmadalaya.org/main/img/social/blogger.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
+                                                      <img alt="Blogger" border="0" height="26" src="img/social/blogger.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
                                                     </a>
                                                   </td>
                                                    <td width="7">
@@ -876,7 +876,7 @@ your personal visit and guidance whenever possible to you.
                                                   </td>
                                                   <td valign="top">
                                                     <a href="https://www.instagram.com/narmadalaya/" style="text-decoration:none;" target="_blank">
-                                                      <img alt="Instagram" border="0" height="26" src="https://narmadalaya.org/main/img/social/instagram.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
+                                                      <img alt="Instagram" border="0" height="26" src="img/social/instagram.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
                                                     </a>
                                                   </td>
                                                   <td width="7">
@@ -884,7 +884,7 @@ your personal visit and guidance whenever possible to you.
                                                   </td>
                                                   <td valign="top">
                                                     <a href="https://www.youtube.com/user/narmadalaya" style="text-decoration:none;" target="_blank">
-                                                      <img alt="Youtube" border="0" height="26" src="https://narmadalaya.org/main/img/social/youtube.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
+                                                      <img alt="Youtube" border="0" height="26" src="img/social/youtube.png" style="display:block;font-family: Arial, sans-serif; font-size:10px; line-height:18px; color:#feae39; " width="26" />
                                                     </a>
                                                   </td>
                                                 </tr>
@@ -1131,7 +1131,7 @@ Tehsil – Kasrawad, Dist – Khargone, Madhya Pradesh, India, Pin Code – 4512
                                 <p	class="footer-text">
                                     
                                     Nimar Abhyudaya Rural Management And Development Association (N.A.R.M.A.D.A.) is a spiritually oriented service mission. 
-                                   <a href="https://narmadalaya.org/main/About" style="color: white;">Read more... </a>
+                                   <a href="About" style="color: white;">Read more... </a>
                                 </p>
                             </div>
                         </div>
