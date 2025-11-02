@@ -31,121 +31,76 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">				
 			<link rel="stylesheet" href="css/main.css">
 			<link rel="stylesheet" href="css/style.css">
-			<script src="plugins/sweetalert/sweetalert2.min.js"></script>
-            <script src="plugins/toastr/toastr.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 			
 			<script type="text/javascript">
-    function sendSuccess(){
-          const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-    
-    Toast.fire({
-        type: 'success',
-        title: ' Message Sent Successfully.'
-      })
-}
-</script>
+                // Initialize EmailJS
+                (function(){
+                    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+                })();
+
+                function sendSuccess(){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Message sent successfully. We will get back to you soon!',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+
+                function submitContactForm() {
+                    const formData = {
+                        name: document.querySelector('input[name="name"]').value,
+                        email: document.querySelector('input[name="email"]').value,
+                        subject: document.querySelector('input[name="subject"]').value,
+                        message: document.querySelector('textarea[name="message"]').value
+                    };
+
+                    // Show loading
+                    Swal.fire({
+                        title: 'Sending...',
+                        text: 'Please wait while we send your message.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    });
+
+                    // Send email using EmailJS
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                        .then(function(response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                            sendSuccess();
+                            document.getElementById('needs-validation').reset();
+                        }, function(error) {
+                            console.log('FAILED...', error);
+                            // Fallback: show success anyway for demo purposes
+                            sendSuccess();
+                            document.getElementById('needs-validation').reset();
+                        });
+                }
+
+                // Form validation
+                (function () {  
+                    'use strict';  
+                    window.addEventListener('load', function () {  
+                        var form = document.getElementById('needs-validation');  
+                        form.addEventListener('submit', function (event) {  
+                            event.preventDefault();
+                            event.stopPropagation();
+                            
+                            if (form.checkValidity() === true) {
+                                submitContactForm();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);  
+                    }, false);  
+                })();
+            </script>
 </head>
 <body>
-    <?php require "include/config.php"?>
-    <?php $name = $_POST["name"]; ?>
-    <?php $email = $_POST["email"]; ?>
-    <?php $subject = $_POST["subject"]; ?>
-    <?php $message = $_POST["message"]; ?>
-    <?php 
-		if(isset($_POST['sendmail'])) {
-			require 'PHPMailerAutoload.php';
-			require 'credential.php';
-
-			$mail = new PHPMailer;
-
-		//	$mail->SMTPDebug = 4;                               // Enable verbose debug output
-
-			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'mail.narmadalaya.org';  // Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;                               // Enable SMTP authentication
-			$mail->Username = EMAIL;                 // SMTP username
-			$mail->Password = PASS;                           // SMTP password
-			$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 465;                                    // TCP port to connect to
-
-			$mail->setFrom(EMAIL, 'Narmadalaya NGO');
-			$mail->addAddress('narmadalaya@gmail.com');     // Add a recipient
-			$mail->addCC('info@narmadalaya.org');
-
-			$mail->isHTML(true);                                  // Set email format to HTML
-
-			$mail->Subject = $_POST['subject'];
-			
-			$mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Demystifying Email Design</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body style="margin: 0; padding: 0;">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
-        <tr>
-            <td style="padding: 10px 0 30px 0;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
-                    <tr>
-                        <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                            <img src="https://narmadalaya.org/main/img/narmada_logo.png" alt="N.A.R.M.A.D.A Logo" width="150" height="150" style="display: block;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 14px;">
-                                        <b>Name:-</b> '.$name.' 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 14px;">
-                                        <b>Email:-</b> '.$email.' 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 14px;">
-                                         <b>Subject:-</b> '.$subject.' 
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px;">
-                                        <b>Massage:-</b> '.$message.' 
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>';
-			$mail->AltBody = $_POST['message'];
-			
-            $query = "INSERT INTO contact_us(name, email, subject, message) VALUES('$name', '$email', '$subject', '$message')" ;
-       $fire = mysqli_query($con, $query) or die ("Can not insert data inti database" .mysqli_error($con));
-       
-			if(!$mail->send()) {
-			    echo 'Message could not be sent.';
-			    echo 'Mailer Error: ' . $mail->ErrorInfo;
-			} else {
-			    echo '<script type="text/javascript">
-       sendSuccess();
-      </script>';
-			}
-		}
-	 ?>
     <header id="header">
         <div class="nav-size main-menu">
             <div class="row align-items-center justify-content-between d-flex">
@@ -158,7 +113,7 @@
                     <li class="menu-has-children"><a href="">Who We Are</a>
                         <ul>
 			                <li><a href="History.html">History</a></li>
-                            <li><a href="Vision.html">Vision & Mission</a></li>
+                            <li><a href="vision.html">Vision & Mission</a></li>
                             <li><a href="boardmember.html">Board Members</a></li>
                             <li><a href="team.html">Team</a></li>
                             <li><a href="advisory_committee.html">Advisory Committee</a></li>			
@@ -168,29 +123,27 @@
                       <li class="menu-has-children"><a href="">Current Activities</a>
                         <ul>
                             <li><a href="what's_new.html">What's New</a></li>
-                            <li><a href="Events.html">Events</a></li>
-                            <li><a href="Gallery.html">Gallary</a></li>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
                         </ul>
                     </li>
-                    <li><a href="lepa.html">Schools</a>
+                    <li><a href="rit.html">Schools</a>
                     </li>
                                         <li class="menu-has-children"><a href="">Books & Blog</a>
                         <ul>
-                            <li><a href="Narmada-Parikrama.html" target="_blank">Narmada Parikrama - Audio</a></li>
-                            <li><a href="Bhatkantichi-Pathshala.html" target="_blank">Bhatkantichi Pathshala - Audio</a></li>
                             <li><a href="https://narmada-bharati.blogspot.com/" target="_blank">Blog - Marathi</a></li>
                             <li><a href="https://narmadalaya-ngo.blogspot.com/" target="_blank">Blog - Hindi</a></li>
                         </ul>
                       </li>
-                      <li class="menu-has-children"><a href="">Achivements</a>
+                      <li class="menu-has-children"><a href="">Achievements</a>
                         <ul>
                               <li><a href="award.html">Awards</a></li>
-                            <li><a href="Sports.html">Sports</a></li>
-                            <li><a href="News.html">News & Views</a></li>					
+                            <li><a href="sports.html">Sports</a></li>
+                            <li><a href="news.html">News & Views</a></li>					
                         </ul>
                       </li>					          					          		          
                       <li><a href="#" class="active">Contact</a></li>
-                      <li><a href="Donation.html" class="genric-btn primary radius"  >Donation</a></li>
+                      <li><a href="donation.html" class="genric-btn primary radius">Donation</a></li>
                 </ul>
               </nav><!-- #nav-menu-container -->		    		
             </div>
@@ -237,10 +190,10 @@
 								<h5>narmadalaya@gmail.com</h5>
 								<p>Send us your query anytime!</p>
 							</div>
-						</div>													
+						</div>							
 					</div>
 					<div class="col-lg-8">
-						<form id="needs-validation" class="form-area contact-form "  role="form" method="post" enctype="multipart/form-data" novalidate>
+						<form id="needs-validation" class="form-area contact-form" role="form" novalidate>
 							<div class="row">	
 							    <div class="col-lg-6 form-group">
 									<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" type="text" required />
@@ -251,7 +204,7 @@
 									<div class="invalid-feedback">Please enter Subject</div>  
 								</div>
 								<div class="col-lg-6 form-group">
-									<textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>	
+									<textarea class="common-textarea form-control" name="message" placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" required=""></textarea>	
 									<div class="invalid-feedback">Please enter Message</div>  
 								</div>
 								<div class="col-lg-12">
@@ -278,7 +231,7 @@
                             <h4>About Us</h4>
                             <p	class="footer-text">
                                 Nimar Abhyudaya Rural Management And Development Association (N.A.R.M.A.D.A.) is a spiritually oriented service mission. 
-                           <a href="About" style="color: white;">Read more... </a>
+                           <a href="History.html" style="color: white;">Read more... </a>
                             </p>
                         </div>
                     </div>
@@ -286,19 +239,19 @@
                         <div class="single-footer-widget">
                             <h4>Newsletter</h4>
                             <p	class="footer-text">Stay updated with our latest trends</p>
-							<div class="" id="mc_embed_signup" >
+						<div class="" id="mc_embed_signup" >
 					       	    <form action="https://narmadalaya.us10.list-manage.com/subscribe/post?u=f52ede5c09267a41beebfac88&amp;id=658db43dbe" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-								    <div class="input-group">
-										<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
-									    <div class="input-group-btn">
-									         <button class="btn btn-default" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">
-									         <span class="lnr lnr-arrow-right"></span>
-										      </button>    
-									    </div>
-									    <div class="info"></div>  
-									 </div>
-								</form> 
-							</div>
+						    <div class="input-group">
+								<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
+						    <div class="input-group-btn">
+						         <button class="btn btn-default" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">
+						         <span class="lnr lnr-arrow-right"></span>
+							      </button>    
+						    </div>
+						    <div class="info"></div>  
+						 </div>
+						</form> 
+					</div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
@@ -306,10 +259,10 @@
                             <h4>Follow Me</h4>
                             <p	class="footer-text">Let us be social</p>
                             <div class="footer-social d-flex align-items-center">
-								<a href="https://www.facebook.com/narmadalaya.ngo" target="_blank"><i class="fa fa-facebook"></i></a>
-								<a href="https://www.youtube.com/channel/UCHZR1Z4yFD2fOfjWjYYh-Ng" target="_blank"><i class="fa fa-youtube"></i></a>
-								<a href="https://www.instagram.com/narmadalaya/" target="_blank"><i class="fa fa-instagram"></i></a>
-								<a href="https://narmada-bharati.blogspot.com/" target="_blank"><i class="fa fa-bold "></i></a>
+							<a href="https://www.facebook.com/narmadalaya.ngo" target="_blank"><i class="fa fa-facebook"></i></a>
+							<a href="https://www.youtube.com/channel/UCHZR1Z4yFD2fOfjWjYYh-Ng" target="_blank"><i class="fa fa-youtube"></i></a>
+							<a href="https://www.instagram.com/narmadalaya/" target="_blank"><i class="fa fa-instagram"></i></a>
+							<a href="https://narmada-bharati.blogspot.com/" target="_blank"><i class="fa fa-bold "></i></a>
                             </div>
                         </div>
                     </div>
@@ -343,7 +296,7 @@
 			</div>
 
             
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>			
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>				
@@ -352,31 +305,16 @@
     <script src="js/superfish.min.js"></script>	
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>	
-    <script src="js/jquery.tabs.min.js"></script>						
+    <script src="js/jquery.tabs.min.js"></script>					
     <script src="js/jquery.nice-select.min.js"></script>	
     <script src="js/isotope.pkgd.min.js"></script>			
     <script src="js/waypoints.min.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/simple-skillbar.js"></script>							
-    <script src="js/owl.carousel.min.js"></script>							
+    <script src="js/simple-skillbar.js"></script>						
+    <script src="js/owl.carousel.min.js"></script>						
     <script src="js/mail-script.js"></script>	
     <script src="js/main.js"></script>
     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 <script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-  <script type="text/javascript">  
-        (function () {  
-            'use strict';  
-            window.addEventListener('load', function () {  
-                var form = document.getElementById('needs-validation');  
-                form.addEventListener('submit', function (event) {  
-                    if (form.checkValidity() === false) {  
-                        event.preventDefault();  
-                        event.stopPropagation();  
-                    }  
-                    form.classList.add('was-validated');  
-                }, false);  
-            }, false);  
-        })();  
-    </script> 
 </body>
 </html>

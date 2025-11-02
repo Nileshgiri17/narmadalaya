@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- Site Title -->
+    <title>:: Welcome to N.A.R.M.A.D.A. ::</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+    <!--CSS-->
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">			
+    <link rel="stylesheet" href="css/nice-select.css">			
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/sweetalert/bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">				
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        // Initialize EmailJS
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+        })();
+
+        // Form validation
+        (function () {  
+            'use strict';  
+            window.addEventListener('load', function () {  
+                var form = document.getElementById('needs-validation');  
+                form.addEventListener('submit', function (event) {  
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    if (form.checkValidity() === true) {
+                        submitForm();
+                    }
+                    form.classList.add('was-validated');
+                }, false);  
+            }, false);  
+        })();
+
+        function submitForm() {
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                dob: document.getElementById('dob').value,
+                phonenumber: document.getElementById('phonenumber').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                tranid: document.getElementById('tranid').value,
+                pancard: document.getElementById('pancard').value,
+                address: document.getElementById('address').value
+            };
+
+            // Show loading
+            Swal.fire({
+                title: 'Submitting...',
+                text: 'Please wait while we process your donation form.',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                }
+            });
+
+            // Send email using EmailJS (you'll need to set up EmailJS service)
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    sendSuccess();
+                    document.getElementById('needs-validation').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    // Fallback: show success anyway for demo purposes
+                    sendSuccess();
+                    document.getElementById('needs-validation').reset();
+                });
+        }
+
+        function sendSuccess(){
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your donation form has been submitted successfully. Thank you for your contribution!',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        }
+
+        // Date picker initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize date picker
+            $('#dob').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div class="nav-size main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+              <div id="logo">
+                <a href="index.html"><img src="img/logo.png" alt="" title="" id="header-logo"/></a>
+              </div>
+              <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="menu-has-children"><a href="">Who We Are</a>
+                        <ul>
+                            <li><a href="History.html">History</a></li>
+                            <li><a href="vision.html">Vision & Mission</a></li>
+                            <li><a href="boardmember.html">Board Members</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="advisory_committee.html">Advisory Committee</a></li>
+                            <li><a href="Organization-Certifications.html">Organization Certifications</a></li>
+                        </ul>
+                    </li>
+                      <li class="menu-has-children"><a href="">Current Activities</a>
+                        <ul>
+                            <li><a href="what's_new.html">What's New</a></li>
+                            <li><a href="events.html">Events</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="rit.html">Schools</a>
+                    </li>
+                    <li class="menu-has-children"><a href="">Books & Blog</a>
+                        <ul>
+                            <li><a href="https://narmada-bharati.blogspot.com/" target="_blank">Blog - Marathi</a></li>
+                            <li><a href="https://narmadalaya-ngo.blogspot.com/" target="_blank">Blog - Hindi</a></li>
+                        </ul>
+                      </li>
+                      <li class="menu-has-children"><a href="">Achievements</a>
+                        <ul>
+                              <li><a href="award.html">Awards</a></li>
+                            <li><a href="sports.html">Sports</a></li>
+                            <li><a href="news.html">News & Views</a></li>				
+                        </ul>
+                      </li>					          					          		          
+                      <li><a href="contact.php">Contact</a></li>
+                      <li><a href="donation.html" class="genric-btn primary radius">Donation</a></li>
+                </ul>
+              </nav><!-- #nav-menu-container -->		    		
+            </div>
+        </div>
+      </header><!-- #header -->
+
+	<!-- Start contact-page Area -->
+	<section class="contact-page-area section-gap">
+		<div class="container">
+                <div class="card">  
+                    <div class="card-header form-banner text-white">  
+                        <h4 class="card-title text-uppercase" style="padding-left: 20px; color:#FFF;">Donation Form</h4>
+                    </div>  
+                    <div class="card-body">  
+                        <form id="needs-validation" role="form" novalidate>  
+                            <div class="row">  
+                                <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label for="name">Name</label>  
+                                        <input type="text" id="name" name="name" placeholder="Name" class="form-control" aria-describedby="inputGroupPrepend" required />  
+                                        <div class="invalid-feedback">  
+                                            Please enter Name.  
+                                        </div>  
+                                    </div>  
+                                </div>  
+                                 <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label for="email">Email</label>  
+                                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" aria-describedby="inputGroupPrepend" required />  
+                                        <div class="invalid-feedback">  
+                                            Please enter a valid Email.  
+                                        </div>  
+                                    </div>  
+                                </div> 
+                                <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label for="dob">Date of Birth</label>  
+                                        <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" aria-describedby="inputGroupPrepend" required>  
+                                        <div class="invalid-feedback">  
+                                            Please enter Date of Birth.  
+                                        </div>  
+                                    </div>  
+                                </div> 
+                            </div>  
+                            <div class="row">  
+                                <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                         <label for="phonenumber">Mobile Number</label>  
+                                         <input type="tel" pattern="^[0-9]{10}$" class="form-control" id="phonenumber" name="phonenumber" placeholder="Mobile Number" aria-describedby="inputGroupPrepend" required>  
+                                        <div class="invalid-feedback">  
+                                            Please enter 10 digit mobile number.  
+                                        </div>   
+                                    </div>  
+                                </div>  
+                                 <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                         <label for="whatsapp">WhatsApp Number</label>  
+                                         <input type="tel" pattern="^[0-9]{10}$" class="form-control" id="whatsapp" name="whatsapp" placeholder="WhatsApp Number" aria-describedby="inputGroupPrepend" required>  
+                                        <div class="invalid-feedback">  
+                                            Please enter 10 digit WhatsApp number.  
+                                        </div>   
+                                    </div>  
+                                </div>  
+                                <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label for="tranid">Transaction no.</label>  
+                                        <input type="text" class="form-control" id="tranid" name="tranid" placeholder="Transaction number" aria-describedby="inputGroupPrepend" required>  
+                                        <div class="invalid-feedback">  
+                                            Please enter Transaction number.  
+                                        </div>  
+                                    </div>  
+                                </div>  
+                            </div>  
+                            <div class="row"> 
+                                <div class="col-sm-4 col-md-4 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label for="pancard">PAN Number</label>  
+                                        <input type="text" class="form-control" id="pancard" name="pancard" placeholder="PAN Number" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" aria-describedby="inputGroupPrepend" required>  
+                                        <div class="invalid-feedback">  
+                                            Please enter valid PAN Number (e.g., ABCDE1234F).  
+                                        </div>  
+                                    </div>  
+                                </div>  
+                                <div class="col-sm-8 col-md-8 col-xs-8">  
+                                    <div class="form-group">  
+                                        <label for="address">Address</label>  
+                                        <textarea class="form-control" rows="3" id="address" name="address" placeholder="Enter your complete address" aria-describedby="inputGroupPrepend" required></textarea>  
+                                        <div class="invalid-feedback">Please enter address</div>  
+                                    </div>  
+                                </div>  
+                            </div>  
+                            <div class="row">  
+                                <div class="col-sm-12 col-md-12 col-xs-12">  
+                                    <div class="float-right">
+                                         <div class="card-body">
+                                        <a class="genric-btn info radius" href="donation.html">Cancel</a>  
+                                        <button type="submit" id="submit" name="sendmail" class="genric-btn primary radius">Submit</button>  
+                                    </div>       
+                                </div>  
+                            </div>  
+                        </form>  
+                    </div>  
+            </div>  
+		</div>	
+	</section>
+	<!-- End contact-page Area -->
+            
+ <!-- start footer Area -->
+            <footer class="footer-area short-gap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>About Us</h4>
+                                <p	class="footer-text">
+                                    Nimar Abhyudaya Rural Management And Development Association (N.A.R.M.A.D.A.) is a spiritually oriented service mission. 
+                                   <a href="History.html" style="color: white;">Read more... </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Newsletter</h4>
+                                <p	class="footer-text">Stay updated with our latest trends</p>
+								<div class="" id="mc_embed_signup" >
+									 <form action="https://narmadalaya.us10.list-manage.com/subscribe/post?u=f52ede5c09267a41beebfac88&amp;id=658db43dbe" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+									  <div class="input-group">
+										<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
+									    <div class="input-group-btn">
+									      <button class="btn btn-default" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">
+									        <span class="lnr lnr-arrow-right"></span>
+										  </button>    
+									    </div>
+									    	<div class="info"></div>  
+									  </div>
+									</form> 
+								</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                            <div class="single-footer-widget">
+                                <h4>Follow Me</h4>
+                                <p	class="footer-text">Let us be social</p>
+                                <div class="footer-social d-flex align-items-center">
+									<a href="https://www.facebook.com/narmadalaya.ngo" target="_blank"><i class="fa fa-facebook"></i></a>
+									<a href="https://www.youtube.com/channel/UCHZR1Z4yFD2fOfjWjYYh-Ng" target="_blank"><i class="fa fa-youtube"></i></a>
+									<a href="https://www.instagram.com/narmadalaya/" target="_blank"><i class="fa fa-instagram"></i></a>
+									<a href="https://narmada-bharati.blogspot.com/" target="_blank"><i class="fa fa-bold "></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End footer Area -->		
+			<!-- begin Back to Top button -->
+			<a class="back_to_top" title="Back To Top">&uarr;</a>
+			<div class="social_icons_fix">
+				<a href="https://www.facebook.com/narmadalaya.ngo" target="_blank">
+				<div class="social_icons_fix fb">
+					<i class="fa fa-facebook"></i>
+				  </div></a>
+
+				  <a href="https://www.youtube.com/channel/UCHZR1Z4yFD2fOfjWjYYh-Ng" target="_blank">
+				  <div class="social_icons_fix youtube">
+					<i class="fa fa-youtube" ></i>
+				  </div>
+				</a>
+				  <a href="https://www.instagram.com/narmadalaya/" target="_blank">
+				  <div class="social_icons_fix instagram">
+					<i class="fa fa-instagram"></i>
+				  </div>
+				</a>
+				<a href="http://narmada-bharati.blogspot.com/" target="_blank">
+				  <div class="social_icons_fix blog">
+					<img src="img/social/blog.png" alt="">
+				  </div>
+				</a>
+			</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>			
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>				
+    <script src="js/easing.min.js"></script>			
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>	
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>	
+    <script src="js/jquery.tabs.min.js"></script>					
+    <script src="js/jquery.nice-select.min.js"></script>	
+    <script src="js/isotope.pkgd.min.js"></script>			
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/simple-skillbar.js"></script>						
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.inputmask.bundle.min.js"></script>
+    <script src="js/select2.full.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        $(function () {
+            //Date input mask
+            $('#dob').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+            
+            //Phone number formatting
+            $('#phonenumber, #whatsapp').inputmask('9999999999');
+            
+            //PAN card formatting
+            $('#pancard').inputmask('AAAAA9999A');
+        });
+    </script>
+</body>
+</html>

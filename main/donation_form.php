@@ -978,40 +978,40 @@ Tehsil – Kasrawad, Dist – Khargone, Madhya Pradesh, India, Pin Code – 4512
                     <li><a href="index.html">Home</a></li>
                     <li class="menu-has-children"><a href="">Who We Are</a>
                         <ul>
-			                <li><a href="History">History</a></li>
-                            <li><a href="Vision">Vision & Mission</a></li>
-                            <li><a href="Bord-Members">Board Members</a></li>
-                            <li><a href="Team-Member">Team</a></li>
-                            <li><a href="Advisory-Committee">Advisory Committee</a></li>
-                            <li><a href="Organization-Certifications">Organization Certifications</a></li>
+			                <li><a href="History.html">History</a></li>
+                            <li><a href="Vision.html">Vision & Mission</a></li>
+                            <li><a href="boardmember.html">Board Members</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="advisory_committee.html">Advisory Committee</a></li>
+                            <li><a href="Organization-Certifications.html">Organization Certifications</a></li>
                         </ul>
                     </li>
                       <li class="menu-has-children"><a href="">Current Activities</a>
                         <ul>
-                            <li><a href="what's_new">What's New</a></li>
-                            <li><a href="Events">Events</a></li>
-                            <li><a href="Gallery">Gallary</a></li>
+                            <li><a href="what's_new.html">What's New</a></li>
+                            <li><a href="Events.html">Events</a></li>
+                            <li><a href="Gallery.html">Gallary</a></li>
                         </ul>
                     </li>
-                    <li><a href="RKSNSchool">Schools</a>
+                    <li><a href="lepa.html">Schools</a>
                     </li>
                     <li class="menu-has-children"><a href="">Books & Blog</a>
                         <ul>
-                            <li><a href="Narmada-Parikrama" target="_blank">Narmada Parikrama - Audio</a></li>
-                            <li><a href="Bhatkantichi-Pathshala" target="_blank">Bhatkantichi Pathshala - Audio</a></li>
+                            <li><a href="Narmada-Parikrama.html" target="_blank">Narmada Parikrama - Audio</a></li>
+                            <li><a href="Bhatkantichi-Pathshala.html" target="_blank">Bhatkantichi Pathshala - Audio</a></li>
                             <li><a href="https://narmada-bharati.blogspot.com/" target="_blank">Blog - Marathi</a></li>
                             <li><a href="https://narmadalaya-ngo.blogspot.com/" target="_blank">Blog - Hindi</a></li>
                         </ul>
                       </li>
                       <li class="menu-has-children"><a href="">Achivements</a>
                         <ul>
-                              <li><a href="Awards">Awards</a></li>
-                            <li><a href="Sports">Sports</a></li>
-                            <li><a href="News">News & Views</a></li>				
+                              <li><a href="award.html">Awards</a></li>
+                            <li><a href="Sports.html">Sports</a></li>
+                            <li><a href="News.html">News & Views</a></li>				
                         </ul>
                       </li>					          					          		          
-                      <li><a href="Contact">Contact</a></li>
-                      <li><a href="Donation" class="genric-btn primary radius"  >Donation</a></li>
+                      <li><a href="Contact.html">Contact</a></li>
+                      <li><a href="Donation.html" class="genric-btn primary radius"  >Donation</a></li>
                 </ul>
               </nav><!-- #nav-menu-container -->		    		
             </div>
@@ -1108,7 +1108,7 @@ Tehsil – Kasrawad, Dist – Khargone, Madhya Pradesh, India, Pin Code – 4512
                                 <div class="col-sm-12 col-md-12 col-xs-12">  
                                     <div class="float-right">
                                          <div class="card-body">
-                        <a class="genric-btn info radius" href="Donation">Cancel</a>  
+                        <a class="genric-btn info radius" href="Donation.html">Cancel</a>  
                                         <button type="submit" id="submit" name="sendmail" class="genric-btn primary radius" >Submit</button>  
                                     </div>       
                                     
