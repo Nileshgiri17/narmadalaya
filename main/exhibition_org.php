@@ -519,11 +519,11 @@
         <div class="nav-size-sp main-menu">
             <div class="row align-items-center justify-content-between d-flex">
               <div id="logo">
-                <a href="Home"><img src="img/logo.png" alt="" title="" id="header-logo"/></a>
+                <a href="index.html"><img src="img/logo.png" alt="" title="" id="header-logo"/></a>
               </div>
               <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="Home">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li class="menu-has-children"><a href="">Who We Are</a>
                         <ul>
 			                <li><a href="History">History</a></li>
@@ -633,7 +633,7 @@
                                             <select class="custom-select d-block w-100"  name="type" required />
                                             <option value="">Select Exhibition place..</option>
                                         <option value="Exhibition">Exhibition</option>
-										<option value="Home">Home</option>
+										<option value="index.html">Home</option>
 										<option value="Gardan">Gardan</option>
 										<option value="Program">Program</option>
                                             </select>

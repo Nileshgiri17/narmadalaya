@@ -74,7 +74,7 @@ mysqli_query($con,$sql);
 		    <div class="nav-size main-menu">
 		    	<div class="row align-items-center justify-content-between d-flex">
 			      <div id="logo">
-			        <a href="Home"><img src="img/logo.png" alt="" title="" id="header-logo"/></a>
+			        <a href="index.html"><img src="img/logo.png" alt="" title="" id="header-logo"/></a>
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
